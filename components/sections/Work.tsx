@@ -3,7 +3,7 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FaBriefcase, FaDownload } from 'react-icons/fa';
-import { workExperiences } from '@/data/workExperience';
+import { workExperiences, WorkExperience } from '@/data/workExperience';
 import WorkTimelineItem from '@/components/WorkTimelineItem';
 import WorkPopup from '@/components/WorkPopup';
 import { useScrollSection } from '@/hooks/use-scroll-section';

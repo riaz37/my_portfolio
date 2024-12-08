@@ -12,8 +12,8 @@ import {
 } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
-import BackgroundGrid from "@/components/ui/BackgroundGrid";
 import { cn } from "@/lib/utils";
+import { useRouter } from 'next/navigation';
 
 const PROFESSIONAL_TITLES = [
   "Full Stack Developer",
@@ -40,6 +40,7 @@ const Hero = () => {
   const [isVisible, setIsVisible] = useState(true);
   const imageControls = useAnimation();
   const containerRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const titleCycle = setInterval(() => {
@@ -61,121 +62,131 @@ const Hero = () => {
     });
   };
 
+  const scrollToProjects = () => {
+    const projectsSection = document.getElementById('projects');
+    if (projectsSection) {
+      // Scroll with an offset to account for any fixed headers
+      const offset = 80; // Adjust this value based on your navbar/header height
+      const elementPosition = projectsSection.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({
+        top: elementPosition - offset,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <div
       ref={containerRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 py-16"
     >
-      <BackgroundGrid />
+      {/* Professional Identity */}
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+        className="space-y-6 text-center md:text-left"
+      >
+        <h1 className="text-4xl md:text-5xl font-bold text-foreground">
+          Riazul Islam
+        </h1>
 
-      <div className="relative z-10 max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-        {/* Professional Identity */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          className="space-y-6 text-center md:text-left"
-        >
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-            Riazul Islam
-          </h1>
-
-          <div className="h-20">
-            <AnimatePresence mode="wait">
-              {isVisible && (
-                <motion.div
-                  key={currentTitle}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5 }}
-                  className="text-2xl md:text-3xl text-primary"
-                >
-                  {PROFESSIONAL_TITLES[currentTitle]}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          <p className="text-foreground/80 mb-6 max-w-xl mx-auto md:mx-0">
-            Passionate developer creating innovative web solutions at the
-            intersection of technology and creativity. Transforming ideas into
-            elegant, efficient, and impactful digital experiences.
-          </p>
-
-          {/* Achievements */}
-          <div className="flex justify-center md:justify-start space-x-6 mb-6">
-            {ACHIEVEMENTS.map((achievement, index) => (
+        <div className="h-20">
+          <AnimatePresence mode="wait">
+            {isVisible && (
               <motion.div
-                key={index}
+                key={currentTitle}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.3 }}
-                className="flex items-center space-x-3 bg-background/50 p-4 rounded-lg"
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className="text-2xl md:text-3xl text-primary"
               >
-                <achievement.icon className="text-primary text-3xl" />
-                <div>
-                  <div className="text-2xl font-bold text-primary">
-                    {achievement.number}
-                  </div>
-                  <div className="text-sm text-foreground/70">
-                    {achievement.label}
-                  </div>
-                </div>
+                {PROFESSIONAL_TITLES[currentTitle]}
               </motion.div>
-            ))}
-          </div>
+            )}
+          </AnimatePresence>
+        </div>
 
-          {/* Action Buttons */}
-          <div className="flex space-x-4 justify-center md:justify-start">
-            <Link href="/projects" passHref>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center space-x-2 px-6 py-3 bg-primary text-background rounded-full hover:bg-primary/90 transition-colors"
-              >
-                <FaCode />
-                <span>View Projects</span>
-              </motion.button>
-            </Link>
-            <motion.button
-              onClick={() => {
-                const contactSection = document.getElementById('contact');
-                contactSection?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center space-x-2 px-6 py-3 border border-primary text-primary rounded-full hover:bg-primary/10 transition-colors"
+        <p className="text-foreground/80 mb-6 max-w-xl mx-auto md:mx-0">
+          Passionate developer creating innovative web solutions at the
+          intersection of technology and creativity. Transforming ideas into
+          elegant, efficient, and impactful digital experiences.
+        </p>
+
+        {/* Achievements */}
+        <div className="flex justify-center md:justify-start space-x-6 mb-6">
+          {ACHIEVEMENTS.map((achievement, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.3 }}
+              className="flex items-center space-x-3 bg-background/50 p-4 rounded-lg"
             >
-              <FaRocket />
-              <span>Hire Me</span>
-            </motion.button>
-          </div>
-        </motion.div>
+              <achievement.icon className="text-primary text-3xl" />
+              <div>
+                <div className="text-2xl font-bold text-primary">
+                  {achievement.number}
+                </div>
+                <div className="text-sm text-foreground/70">
+                  {achievement.label}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
 
-        {/* Profile Image */}
-        <motion.div
-          className="flex justify-center"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-        >
-          <motion.div
-            className="w-64 h-64 md:w-96 md:h-96 relative group"
-            animate={imageControls}
-            onHoverStart={handleImageInteraction}
+        {/* Action Buttons */}
+        <div className="flex space-x-4 justify-center md:justify-start">
+          <button 
+            onClick={scrollToProjects}
+            className="flex items-center gap-2 bg-primary text-background px-6 py-3 rounded-full hover:bg-primary/90 transition-colors"
           >
-            <div className="absolute -inset-4 bg-primary/10 rounded-full blur-2xl group-hover:opacity-50 transition-all duration-300"></div>
-            <Image
-              src="/pics/photo.png"
-              alt="Riazul Islam"
-              fill
-              priority
-              className="relative z-10 rounded-full object-cover shadow-2xl border-4 border-primary/50 group-hover:border-primary transition-all duration-300"
-            />
-          </motion.div>
+            <FaRocket /> View Projects
+          </button>
+          <motion.button
+            onClick={() => {
+              const contactSection = document.getElementById('contact');
+              if (contactSection) {
+                const offset = 80;
+                const elementPosition = contactSection.getBoundingClientRect().top + window.pageYOffset;
+                window.scrollTo({
+                  top: elementPosition - offset,
+                  behavior: 'smooth'
+                });
+              }
+            }}
+            whileHover={{ scale: 1.05 }}
+            className="flex items-center gap-2 border border-primary text-primary px-6 py-3 rounded-full hover:bg-primary/10 transition-colors"
+          >
+            <FaEnvelope /> Contact Me
+          </motion.button>
+        </div>
+      </motion.div>
+
+      {/* Profile Image */}
+      <motion.div
+        className="flex justify-center"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8 }}
+      >
+        <motion.div
+          className="w-64 h-64 md:w-96 md:h-96 relative group"
+          animate={imageControls}
+          onHoverStart={handleImageInteraction}
+        >
+          <div className="absolute -inset-4 bg-primary/10 rounded-full blur-2xl group-hover:opacity-50 transition-all duration-300"></div>
+          <Image
+            src="/pics/photo.png"
+            alt="Riazul Islam"
+            fill
+            priority
+            className="relative z-10 rounded-full object-cover shadow-2xl border-4 border-primary/50 group-hover:border-primary transition-all duration-300"
+          />
         </motion.div>
-      </div>
+      </motion.div>
     </div>
   );
 };
