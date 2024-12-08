@@ -4,10 +4,16 @@ import { inter, jetbrain_mono } from "@/app/fonts";
 import "./globals.css";
 import { ThemeProvider } from "@/app/ThemeProvider";
 import { FloatingNav } from "@/components/ui/FloatingNavbar";
-import { FaHome, FaUser, FaBriefcase, FaCode } from "react-icons/fa";
-import StickyIcons from "@/components/sections/StickyIcons";
+import { 
+  FaHome, 
+  FaUser, 
+  FaBriefcase, 
+  FaCode, 
+  FaTools,
+  FaAward 
+} from "react-icons/fa";
 import Footer from "@/components/sections/Footer";
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata = {
   title: "Riazul Islam",
@@ -18,23 +24,28 @@ const navItems = [
   {
     name: "Home",
     link: "#home",
-    icon: <FaHome />,
+    icon: <FaHome className="h-4 w-4 text-neutral-500 dark:text-white" />,
   },
   {
-    name: "About",
-    link: "#about",
-    icon: <FaUser />,
-  },
-  {
-    name: "Projects",
-    link: "#projects",
-    icon: <FaCode />,
+    name: "Services",
+    link: "#services",
+    icon: <FaTools className="h-4 w-4 text-neutral-500 dark:text-white" />,
   },
   {
     name: "Work",
     link: "#work",
-    icon: <FaBriefcase />,
+    icon: <FaBriefcase className="h-4 w-4 text-neutral-500 dark:text-white" />,
   },
+  {
+    name: "Certifications",
+    link: "#certifications",
+    icon: <FaAward className="h-4 w-4 text-neutral-500 dark:text-white" />,
+  },
+  {
+    name: "Projects",
+    link: "#projects",
+    icon: <FaCode className="h-4 w-4 text-neutral-500 dark:text-white" />,
+  }
 ];
 
 export default function RootLayout({
@@ -45,12 +56,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="./favicon.png"
-        />
+        <link rel="icon" type="image/png" sizes="32x32" href="./favicon.png" />
         <meta property="og:title" content="Riazul's Portfolio" />
         <meta
           property="og:description"
@@ -61,13 +67,15 @@ export default function RootLayout({
           property="og:image"
           content="https://riaz37.vercel.app/pics/web_screenshot.png"
         />
-        <script dangerouslySetInnerHTML={{
-          __html: `
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
             if (window.location.href === "https://github.com/riaz37") {
               window.location.replace("https://riaz37.vercel.app");
             }
-          `
-        }} />
+          `,
+          }}
+        />
         <meta property="og:type" content="website" />
       </head>
       <body
@@ -80,7 +88,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <FloatingNav navItems={navItems} />
-          <StickyIcons />
+
           {children}
           <Footer />
           <Analytics />
