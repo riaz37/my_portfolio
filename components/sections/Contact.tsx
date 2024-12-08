@@ -288,7 +288,7 @@ const Contact = () => {
                   Message Sent Successfully!
                 </h3>
                 <p className="text-foreground/80">
-                  Thank you for reaching out. I'll get back to you soon.
+                  Thank you for reaching out. I&apos;ll get back to you soon.
                 </p>
                 <motion.button
                   onClick={() => setIsSubmitted(false)}
