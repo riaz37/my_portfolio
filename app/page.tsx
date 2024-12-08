@@ -11,22 +11,18 @@ import Projects from "@/components/sections/Projects";
 import ContactForm from "@/components/sections/Contact";
 import Skills from '@/components/sections/Skills';
 
-const Home = () => {
+export default function Home() {
   return (
     <AnimatePresence>
-      <main className="relative flex justify-center items-center flex-col overflow-hidden mx-auto pt-16 sm:px-10 px-5">
-        <div className="max-w-7xl w-full">
-          <Hero />
-          <Services />
-          <Work />
-          <Certifications />
-          <Projects />
-          <Skills />
-          <Contact />
-        </div>
+      <main className="min-h-screen bg-background text-foreground">
+        <Hero />
+        <Skills />
+        <Work />
+        <Projects />
+        <Services />
+        <Certifications />
+        <Contact />
       </main>
     </AnimatePresence>
   );
 }
-
-export default Home;
