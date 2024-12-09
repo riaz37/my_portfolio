@@ -4,13 +4,13 @@ import { inter, jetbrain_mono } from "@/app/fonts";
 import "./globals.css";
 import { ThemeProvider } from "@/app/ThemeProvider";
 import { FloatingNav } from "@/components/ui/FloatingNavbar";
-import { 
-  FaHome, 
-  FaUser, 
-  FaBriefcase, 
-  FaCode, 
+import {
+  FaHome,
+  FaUser,
+  FaBriefcase,
+  FaCode,
   FaTools,
-  FaAward 
+  FaAward,
 } from "react-icons/fa";
 import Footer from "@/components/sections/Footer";
 import { Analytics } from "@vercel/analytics/react";
@@ -45,7 +45,7 @@ const navItems = [
     name: "Projects",
     link: "#projects",
     icon: <FaCode className="h-4 w-4 text-neutral-500 dark:text-white" />,
-  }
+  },
 ];
 
 export default function RootLayout({

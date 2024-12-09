@@ -78,14 +78,14 @@ const Hero = () => {
   return (
     <div
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 py-16"
+      className="relative min-h-screen flex flex-col md:flex-row items-center justify-center overflow-hidden px-4 py-16 space-y-8 md:space-y-0 md:space-x-12"
     >
       {/* Professional Identity */}
       <motion.div
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
-        className="space-y-6 text-center md:text-left"
+        className="space-y-6 text-center md:text-left w-full md:w-1/2"
       >
         <h1 className="text-4xl md:text-5xl font-bold text-foreground">
           Riazul Islam
@@ -167,13 +167,13 @@ const Hero = () => {
 
       {/* Profile Image */}
       <motion.div
-        className="flex justify-center"
+        className="flex justify-center w-full md:w-1/2"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8 }}
       >
         <motion.div
-          className="w-64 h-64 md:w-96 md:h-96 relative group"
+          className="w-48 h-48 md:w-96 md:h-96 relative group"
           animate={imageControls}
           onHoverStart={handleImageInteraction}
         >
