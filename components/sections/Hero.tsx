@@ -1,19 +1,15 @@
 // components/sections/Hero.tsx
-import React, { useState, useEffect, useRef } from "react";
-import { motion, useAnimation, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   FaGithub,
   FaLinkedin,
-  FaTwitter,
+  FaFacebook,
   FaEnvelope,
-  FaCode,
   FaRocket,
-  FaDownload,
+  FaCode,
 } from "react-icons/fa";
 import Image from "next/image";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { useRouter } from 'next/navigation';
 
 const PROFESSIONAL_TITLES = [
   "Full Stack Developer",
@@ -22,171 +18,138 @@ const PROFESSIONAL_TITLES = [
   "Web Innovator",
 ];
 
-const ACHIEVEMENTS = [
+const SocialLinks = [
   {
-    number: "3+",
-    label: "Years of Experience",
-    icon: FaCode,
+    icon: FaGithub,
+    href: "https://github.com/riaz37",
+    color: "hover:text-gray-800",
   },
   {
-    number: "20+",
-    label: "Projects Completed",
-    icon: FaRocket,
+    icon: FaLinkedin,
+    href: "https://linkedin.com/in/riaz37",
+    color: "hover:text-blue-600",
+  },
+  {
+    icon: FaFacebook,
+    href: "https://facebook.com/rafi302001",
+    color: "hover:text-blue-400",
   },
 ];
 
 const Hero = () => {
   const [currentTitle, setCurrentTitle] = useState(0);
-  const [isVisible, setIsVisible] = useState(true);
-  const imageControls = useAnimation();
-  const containerRef = useRef<HTMLDivElement>(null);
-  const router = useRouter();
 
   useEffect(() => {
     const titleCycle = setInterval(() => {
-      setIsVisible(false);
-      setTimeout(() => {
-        setCurrentTitle((prev) => (prev + 1) % PROFESSIONAL_TITLES.length);
-        setIsVisible(true);
-      }, 500);
+      setCurrentTitle((prev) => (prev + 1) % PROFESSIONAL_TITLES.length);
     }, 3000);
 
     return () => clearInterval(titleCycle);
   }, []);
 
-  const handleImageInteraction = async () => {
-    await imageControls.start({
-      scale: [1, 1.1, 1],
-      rotate: [0, 5, -5, 0],
-      transition: { duration: 0.5 },
-    });
-  };
-
-  const scrollToProjects = () => {
-    const projectsSection = document.getElementById('projects');
-    if (projectsSection) {
-      // Scroll with an offset to account for any fixed headers
-      const offset = 80; // Adjust this value based on your navbar/header height
-      const elementPosition = projectsSection.getBoundingClientRect().top + window.pageYOffset;
-      window.scrollTo({
-        top: elementPosition - offset,
-        behavior: 'smooth'
-      });
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
   return (
     <div
-      ref={containerRef}
-      className="relative min-h-screen flex flex-col md:flex-row items-center justify-center overflow-hidden px-4 py-16 space-y-8 md:space-y-0 md:space-x-12"
+      id="home"
+      className="relative min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24"
     >
-      {/* Professional Identity */}
-      <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
-        className="space-y-6 text-center md:text-left w-full md:w-1/2"
-      >
-        <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-          Riazul Islam
-        </h1>
-
-        <div className="h-20">
-          <AnimatePresence mode="wait">
-            {isVisible && (
+      <div className="max-w-6xl w-full grid md:grid-cols-2 gap-12 items-center">
+        {/* Content Section */}
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="space-y-6 text-center md:text-left"
+        >
+          {/* Name and Dynamic Title */}
+          <div>
+            <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-4">
+              Riazul Islam
+            </h1>
+            <AnimatePresence mode="wait">
               <motion.div
                 key={currentTitle}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.5 }}
-                className="text-2xl md:text-3xl text-primary"
+                className="text-3xl md:text-4xl text-primary"
               >
                 {PROFESSIONAL_TITLES[currentTitle]}
               </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+            </AnimatePresence>
+          </div>
 
-        <p className="text-foreground/80 mb-6 max-w-xl mx-auto md:mx-0">
-          Passionate developer creating innovative web solutions at the
-          intersection of technology and creativity. Transforming ideas into
-          elegant, efficient, and impactful digital experiences.
-        </p>
+          {/* Description */}
+          <p className="text-foreground/80 max-w-xl mx-auto md:mx-0 text-base leading-relaxed">
+            Passionate developer crafting innovative web solutions at the
+            intersection of technology and creativity. Transforming ideas into
+            elegant, efficient, and impactful digital experiences.
+          </p>
 
-        {/* Achievements */}
-        <div className="flex justify-center md:justify-start space-x-6 mb-6">
-          {ACHIEVEMENTS.map((achievement, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.3 }}
-              className="flex items-center space-x-3 bg-background/50 p-4 rounded-lg"
+          {/* Action Buttons */}
+          <div className="flex justify-center md:justify-start space-x-4">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => scrollToSection("projects")}
+              className="flex items-center gap-2 bg-primary text-background px-6 py-3 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors"
             >
-              <achievement.icon className="text-primary text-3xl" />
-              <div>
-                <div className="text-2xl font-bold text-primary">
-                  {achievement.number}
-                </div>
-                <div className="text-sm text-foreground/70">
-                  {achievement.label}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+              <FaRocket /> View Projects
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => scrollToSection("contact")}
+              className="flex items-center gap-2 border border-primary text-primary px-6 py-3 rounded-full text-sm font-medium hover:bg-primary/10 transition-colors"
+            >
+              <FaEnvelope /> Contact Me
+            </motion.button>
+          </div>
 
-        {/* Action Buttons */}
-        <div className="flex space-x-4 justify-center md:justify-start">
-          <button 
-            onClick={scrollToProjects}
-            className="flex items-center gap-2 bg-primary text-background px-6 py-3 rounded-full hover:bg-primary/90 transition-colors"
-          >
-            <FaRocket /> View Projects
-          </button>
-          <motion.button
-            onClick={() => {
-              const contactSection = document.getElementById('contact');
-              if (contactSection) {
-                const offset = 80;
-                const elementPosition = contactSection.getBoundingClientRect().top + window.pageYOffset;
-                window.scrollTo({
-                  top: elementPosition - offset,
-                  behavior: 'smooth'
-                });
-              }
-            }}
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center gap-2 border border-primary text-primary px-6 py-3 rounded-full hover:bg-primary/10 transition-colors"
-          >
-            <FaEnvelope /> Contact Me
-          </motion.button>
-        </div>
-      </motion.div>
-
-      {/* Profile Image */}
-      <motion.div
-        className="flex justify-center w-full md:w-1/2"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8 }}
-      >
-        <motion.div
-          className="w-48 h-48 md:w-96 md:h-96 relative group"
-          animate={imageControls}
-          onHoverStart={handleImageInteraction}
-        >
-          <div className="absolute -inset-4 bg-primary/10 rounded-full blur-2xl group-hover:opacity-50 transition-all duration-300"></div>
-          <Image
-            src="/pics/photo.png"
-            alt="Riazul Islam"
-            fill
-            priority
-            className="relative z-10 rounded-full object-cover shadow-2xl border-4 border-primary/50 group-hover:border-primary transition-all duration-300"
-          />
+          {/* Social Links */}
+          <div className="flex justify-center md:justify-start space-x-4 mt-6">
+            {SocialLinks.map(({ icon: Icon, href, color }, index) => (
+              <motion.a
+                key={href}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+                className={`text-2xl text-foreground/70 ${color} transition-colors`}
+              >
+                <Icon />
+              </motion.a>
+            ))}
+          </div>
         </motion.div>
-      </motion.div>
+
+        {/* Image Section */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className="hidden md:flex justify-center items-center relative"
+        >
+          <div className="absolute -inset-6 bg-primary/10 rounded-full blur-2xl"></div>
+          <div className="relative z-10 w-80 h-80 lg:w-96 lg:h-96">
+            <Image
+              src="/pics/photo.png"
+              alt="Riazul Islam"
+              fill
+              priority
+              className="rounded-full object-cover shadow-2xl border-4 border-primary/30 hover:border-primary/50 transition-all duration-300"
+            />
+          </div>
+        </motion.div>
+      </div>
     </div>
   );
 };
