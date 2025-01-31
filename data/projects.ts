@@ -32,17 +32,17 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 1,
-    title: "Acro Nation Website",
+    title: "Skateboard37",
     description:
-      "An IT firm website created using React and Next.js. It showcases their services, portfolio, and contact information.",
+      "An interactive and visually engaging skateboard e-commerce platform built using Next.js and React. It features dynamic animations, a seamless shopping experience, and a modern UI design.",
     icon: RiNextjsFill,
     technologies: ["Next.js", "TypeScript", "TailwindCSS", "GSAP"],
 
-    liveUrl: "https://acronation.net",
+    liveUrl: "https://skateboard37.vercel.app",
     skills: [
-      { name: "Full Stack Development" },
+      { name: "E-commerce Development" },
       { name: "UI/UX Design" },
-      { name: "Responsive Web Design" },
+      { name: "3D Animations" },
       { name: "Performance Optimization" },
     ],
   },
@@ -66,8 +66,7 @@ export const projects: Project[] = [
   {
     id: 1,
     title: "Case Cobra",
-    description:
-      "An e-commerce website created using Next.js. ",
+    description: "An e-commerce website created using Next.js. ",
     icon: RiNextjsFill,
     technologies: ["Next.js", "TypeScript", "TailwindCSS", "Framer Motion"],
 
