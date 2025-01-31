@@ -48,7 +48,7 @@ export const workExperiences: WorkExperience[] = [
       { name: "PostgreSQL", icon: SiPostgresql },
       { name: "Docker", icon: FaDocker },
     ],
-    logo: "/logos/radyancorp.svg",
+    logo: "/logos/radyancorp.jpg",
   },
 
   {
