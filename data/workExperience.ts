@@ -1,8 +1,8 @@
 // data/workExperience.ts
-import { FaNodeJs, FaReact } from "react-icons/fa";
+import { FaDocker, FaNodeJs, FaReact } from "react-icons/fa";
 import { RiNextjsFill } from "react-icons/ri";
 import { BiLogoPostgresql, BiLogoTypescript } from "react-icons/bi";
-import { SiNestjs, SiFramer } from "react-icons/si";
+import { SiNestjs, SiFramer, SiPostgresql } from "react-icons/si";
 import { RiTailwindCssFill } from "react-icons/ri";
 import React from "react";
 import { DiMongodb } from "react-icons/di";
@@ -24,9 +24,37 @@ export interface WorkExperience {
 
 export const workExperiences: WorkExperience[] = [
   {
+    company: "Radyan Corporation",
+    position: "Full Stack Developer Team Lead",
+    duration: "January 2025 – Present",
+    year: 2025,
+    description: [
+      "Leading a team of developers in architecting and building full-stack web applications using Next.js, NestJS, and TypeScript.",
+      "Driving the adoption of microservices and scalable architectures to enhance application performance and maintainability.",
+      "Collaborating with UI/UX designers, product managers, and DevOps teams to streamline the development process and meet business objectives.",
+      "Providing mentorship to junior developers, ensuring adherence to best coding practices and fostering a culture of technical excellence.",
+      "Developing and optimizing APIs, ensuring seamless integration between frontend and backend services.",
+      "Implementing SSR and SSG techniques to improve SEO and page load speeds for high-traffic applications.",
+      "Managing code quality through rigorous code reviews, enforcing best practices, and implementing CI/CD pipelines.",
+      "Resolving complex challenges related to state management, server-side rendering, database optimization, and third-party integrations.",
+    ],
+    skills: [
+      { name: "TypeScript", icon: BiLogoTypescript },
+      { name: "React", icon: FaReact },
+      { name: "Next.js", icon: RiNextjsFill },
+      { name: "Nest.js", icon: SiNestjs },
+      { name: "Tailwind", icon: RiTailwindCssFill },
+      { name: "MongoDB", icon: DiMongodb },
+      { name: "PostgreSQL", icon: SiPostgresql },
+      { name: "Docker", icon: FaDocker },
+    ],
+    logo: "/logos/radyancorp.svg",
+  },
+
+  {
     company: "Acro Nation",
     position: "Project Lead",
-    duration: "October 2024 – Present",
+    duration: "October 2024 – December 2024",
     year: 2024,
     description: [
       "Led a team of 10 developers in building scalable, high-performance web applications using Next.js, React, Tailwind CSS, and NestJS.",
