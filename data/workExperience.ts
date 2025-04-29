@@ -26,7 +26,7 @@ export const workExperiences: WorkExperience[] = [
   {
     company: "Radyan Corporation",
     position: "Full Stack Developer Team Lead",
-    duration: "January 2025 – Present",
+    duration: "January 2024 – Present",
     year: 2025,
     description: [
       "Leading a team of developers in architecting and building full-stack web applications using Next.js, NestJS, and TypeScript.",
@@ -54,7 +54,7 @@ export const workExperiences: WorkExperience[] = [
   {
     company: "Acro Nation",
     position: "Project Lead",
-    duration: "October 2024 – December 2024",
+    duration: "May 2023 – December 2023",
     year: 2024,
     description: [
       "Led a team of 10 developers in building scalable, high-performance web applications using Next.js, React, Tailwind CSS, and NestJS.",
@@ -79,7 +79,7 @@ export const workExperiences: WorkExperience[] = [
   {
     company: "Freelancer",
     position: "Full Stack Developer",
-    duration: "June 2022 – September 2024",
+    duration: "June 2022 – September 2023",
     year: 2022,
     description: [
       "Designed and developed custom web applications for clients using Next.js, React, and Tailwind CSS.",
