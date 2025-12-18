@@ -25,7 +25,7 @@ export const workExperiences: WorkExperience[] = [
   {
     company: "Empowering Energy",
     position: "Full Stack Engineer",
-    duration: "Jan 2025 – Present",
+    duration: "1 Jun 2025 – Present",
     year: 2025,
     description: [
       "Developed interactive and animated user interfaces for ESAP’s AI products using Next.js, TypeScript, and modern JavaScript frameworks.",
@@ -48,9 +48,9 @@ export const workExperiences: WorkExperience[] = [
   },
   {
     company: "Radyan Corporation",
-    position: "Lead Full Stack Engineer",
-    duration: "Nov 2023 – Dec 2024",
-    year: 2024,
+    position: "Full Stack Engineer",
+    duration: "2 Jan 2025 – Apr 2025",
+    year: 2025,
     description: [
       "Led full stack development and architecture for high-traffic applications, ensuring scalability and maintainability.",
       "Implemented real-time systems using Socket.IO and Redis to support interactive features.",
@@ -70,26 +70,5 @@ export const workExperiences: WorkExperience[] = [
     ],
     logo: "/logos/radyancorp.jpg",
   },
-  {
-    company: "Radyan Corporation",
-    position: "Full Stack Engineer",
-    duration: "May 2023 – Oct 2023",
-    year: 2023,
-    description: [
-      "Built scalable full-stack applications using Next.js and NestJS.",
-      "Developed REST/gRPC APIs with PostgreSQL and Prisma for efficient data management.",
-      "Implemented real-time features using Socket.IO and Redis for interactive experiences.",
-      "Collaborated with product managers and designers to turn business requirements into technical solutions.",
-      "Focused on performance, security, and scalability across the entire development lifecycle.",
-    ],
-    skills: [
-      { name: "TypeScript", icon: BiLogoTypescript },
-      { name: "React", icon: FaReact },
-      { name: "Next.js", icon: RiNextjsFill },
-      { name: "Nest.js", icon: SiNestjs },
-      { name: "PostgreSQL", icon: SiPostgresql },
-      { name: "Docker", icon: FaDocker },
-    ],
-    logo: "/logos/radyancorp.jpg",
-  },
+  
 ];
