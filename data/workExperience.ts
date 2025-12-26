@@ -23,9 +23,9 @@ export interface WorkExperience {
 
 export const workExperiences: WorkExperience[] = [
   {
-    company: "Empowering Energy",
+    company: "ESAP AI",
     position: "Full Stack Engineer",
-    duration: "1 Jun 2025 – Present",
+    duration: "Jan 2025 – Present",
     year: 2025,
     description: [
       "Developed interactive and animated user interfaces for ESAP’s AI products using Next.js, TypeScript, and modern JavaScript frameworks.",
@@ -49,8 +49,8 @@ export const workExperiences: WorkExperience[] = [
   {
     company: "Radyan Corporation",
     position: "Full Stack Engineer",
-    duration: "2 Jan 2025 – Apr 2025",
-    year: 2025,
+    duration: "May 2023 – Dec 2024",
+    year: 2024,
     description: [
       "Led full stack development and architecture for high-traffic applications, ensuring scalability and maintainability.",
       "Implemented real-time systems using Socket.IO and Redis to support interactive features.",
