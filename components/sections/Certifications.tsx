@@ -53,7 +53,14 @@ const CERTIFICATIONS = [
     year: 2024,
     link: "https://codeinplace.stanford.edu/cip4/certificate/xlil3s"
   },
-  
+  {
+    title: "Associate AI Engineer for Developers",
+    issuer: "Datacamp",
+    icon: FaRobot,
+    color: "text-purple-500",
+    year: 2026,
+    link: "https://www.datacamp.com/completed/statement-of-accomplishment/track/f98619799209be79cb4dd977799d06fae5436374"
+  }
 ];
 
 const Certifications = () => {

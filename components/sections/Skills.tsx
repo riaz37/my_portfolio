@@ -8,6 +8,10 @@ import {
   FaDatabase,
   FaCode,
   FaRobot,
+  FaBrain,
+  FaSearch,
+  FaProjectDiagram,
+  FaMagic,
 } from "react-icons/fa";
 import {
   SiTypescript,
@@ -22,6 +26,10 @@ import {
   SiTensorflow,
   SiDjango,
   SiFramer,
+  SiFastapi,
+  SiSocketdotio,
+  SiGreensock,
+  SiChainlink,
 } from "react-icons/si";
 
 const skillCategories = [
@@ -32,8 +40,9 @@ const skillCategories = [
       { icon: SiNextdotjs, name: "Next.js" },
       { icon: SiTypescript, name: "TypeScript" },
       { icon: SiTailwindcss, name: "Tailwind CSS" },
-      { icon: SiJavascript, name: "JavaScript" },
+      { icon: SiGreensock, name: "GSAP" },
       { icon: SiFramer, name: "Framer Motion" },
+      { icon: FaReact, name: "Zustand" },
     ],
   },
   {
@@ -42,9 +51,9 @@ const skillCategories = [
       { icon: FaNodeJs, name: "Node.js" },
       { icon: SiNestjs, name: "NestJS" },
       { icon: FaPython, name: "Python" },
-      { icon: SiDjango, name: "Django" },
+      { icon: SiFastapi, name: "FastAPI" },
       { icon: SiGraphql, name: "GraphQL" },
-      { icon: FaCode, name: "REST API" },
+      { icon: SiSocketdotio, name: "Socket.IO" },
     ],
   },
   {
@@ -53,16 +62,16 @@ const skillCategories = [
       { icon: SiMongodb, name: "MongoDB" },
       { icon: SiPostgresql, name: "PostgreSQL" },
       { icon: SiRedis, name: "Redis" },
-      { icon: FaDatabase, name: "Database Design" },
+      { icon: FaDatabase, name: "Vector DB" },
     ],
   },
   {
-    name: "AI & Machine Learning",
+    name: "AI engineering",
     skills: [
-      { icon: FaPython, name: "Python" },
-      { icon: SiTensorflow, name: "TensorFlow" },
-
-      { icon: FaRobot, name: "Machine Learning" },
+      { icon: SiChainlink, name: "LangChain" },
+      { icon: FaProjectDiagram, name: "LangGraph" },
+      { icon: FaSearch, name: "RAG" },
+      { icon: FaBrain, name: "LLM" },
     ],
   },
 ];

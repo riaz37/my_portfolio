@@ -49,7 +49,7 @@ export const workExperiences: WorkExperience[] = [
   {
     company: "Radyan Corporation",
     position: "Full Stack Engineer",
-    duration: "May 2023 – Dec 2024",
+    duration: "May 2022 – Dec 2024",
     year: 2024,
     description: [
       "Led full stack development and architecture for high-traffic applications, ensuring scalability and maintainability.",
@@ -70,5 +70,5 @@ export const workExperiences: WorkExperience[] = [
     ],
     logo: "/logos/radyancorp.jpg",
   },
-  
+
 ];

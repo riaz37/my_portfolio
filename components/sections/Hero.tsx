@@ -12,10 +12,10 @@ import {
 import Image from "next/image";
 
 const PROFESSIONAL_TITLES = [
-  "Full Stack Developer",
-  "AI Enthusiast",
+  "Full Stack AI Engineer",
   "Software Engineer",
-  "Web Innovator",
+  "AI Solutions Architect",
+  "Full Stack Developer",
 ];
 
 const SocialLinks = [
@@ -88,9 +88,8 @@ const Hero = () => {
 
           {/* Description */}
           <p className="text-foreground/80 max-w-xl mx-auto md:mx-0 text-base leading-relaxed">
-            Passionate developer crafting innovative web solutions at the
-            intersection of technology and creativity. Transforming ideas into
-            elegant, efficient, and impactful digital experiences.
+            Specializing in architecting production-ready AI systems with LLMs, RAG, and Agentic Workflows,
+            while building scalable full-stack applications with modern technology stacks.
           </p>
 
           {/* Action Buttons */}

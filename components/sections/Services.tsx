@@ -1,12 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { 
-  FaCode, 
-  FaDatabase, 
+import {
+  FaCode,
+  FaDatabase,
   FaRobot,
   FaChartLine,
   FaLaptopCode,
-  FaPalette 
+  FaPalette
 } from "react-icons/fa";
 
 const SERVICES = [
@@ -30,8 +30,8 @@ const SERVICES = [
   },
   {
     icon: FaRobot,
-    title: "AI & Machine Learning",
-    description: "Developing intelligent solutions with Python, TensorFlow, and integrating machine learning models.",
+    title: "AI engineering",
+    description: "Architecting production-ready AI systems with LLMs, RAG, and Agentic Workflows using LangChain and LangGraph.",
     color: "text-red-500"
   },
   {
@@ -50,14 +50,14 @@ const SERVICES = [
 
 const Services = () => {
   return (
-    <section 
-      id="services" 
+    <section
+      id="services"
       className="relative min-h-screen flex items-center justify-center px-4 py-16 bg-background"
     >
       <div className="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800/[0.1] opacity-50 pointer-events-none"></div>
-      
+
       <div className="relative z-10 max-w-6xl w-full mx-auto">
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -66,16 +66,16 @@ const Services = () => {
         >
           My Services
         </motion.h2>
-        
+
         <div className="grid md:grid-cols-3 gap-8">
           {SERVICES.map((service, index) => (
             <motion.div
               key={service.title}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ 
-                duration: 0.5, 
-                delay: index * 0.2 
+              transition={{
+                duration: 0.5,
+                delay: index * 0.2
               }}
               viewport={{ once: true }}
               className="bg-card rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group"
