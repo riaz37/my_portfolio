@@ -34,15 +34,16 @@ export const projects: Project[] = [
     id: 2,
     title: "PageSense",
     description:
-      "Arabic document intelligence platform that extracts and structures data from messy invoices, contracts, and quotations — including handwritten and scanned files — using a bilingual (AR/EN) RAG pipeline with semantic + keyword search and cited answers.",
+      "Enterprise-grade RAG platform that ingests messy documents (invoices, contracts, quotations — handwritten, scanned, bilingual) and turns them into structured, queryable knowledge with semantic + keyword hybrid search, cited answers, and live indexing.",
     icon: RiNextjsFill,
-    technologies: ["Next.js", "TypeScript", "RAG", "Semantic Search"],
+    technologies: ["Next.js", "TypeScript", "RAG", "Vector Search", "Hybrid Retrieval", "LLM"],
     liveUrl: "https://pagesense.vercel.app",
     skills: [
+      { name: "Enterprise RAG" },
+      { name: "Hybrid Retrieval" },
       { name: "Document Intelligence" },
-      { name: "RAG Systems" },
-      { name: "Bilingual NLP" },
       { name: "Structured Extraction" },
+      { name: "Cited Answers" },
     ],
   },
   {
