@@ -132,4 +132,46 @@ export const projects: Project[] = [
       { name: "Minimal UI Design" },
     ],
   },
+  {
+    id: 9,
+    title: "PageSense",
+    description:
+      "AI-powered page analytics and insights platform for tracking user behavior and optimizing web performance.",
+    icon: RiNextjsFill,
+    technologies: ["Next.js", "TypeScript", "TailwindCSS"],
+    liveUrl: "https://pagesense.vercel.app",
+    skills: [
+      { name: "Analytics" },
+      { name: "AI Integration" },
+      { name: "Performance Optimization" },
+    ],
+  },
+  {
+    id: 10,
+    title: "Exorous",
+    description:
+      "Official site for Exorous — an AI-driven CLI coding agent with semantic search and MCP integration.",
+    icon: RiNextjsFill,
+    technologies: ["Next.js", "TypeScript", "TailwindCSS"],
+    liveUrl: "https://exorous.com",
+    skills: [
+      { name: "Developer Tools" },
+      { name: "AI Integration" },
+      { name: "CLI Development" },
+    ],
+  },
+  {
+    id: 11,
+    title: "ReviewSpark",
+    description:
+      "A review management platform that helps businesses collect, showcase, and respond to customer feedback.",
+    icon: RiNextjsFill,
+    technologies: ["Next.js", "TypeScript", "TailwindCSS"],
+    liveUrl: "https://reviewspark.online/",
+    skills: [
+      { name: "Full Stack Development" },
+      { name: "Review Management" },
+      { name: "SaaS" },
+    ],
+  },
 ];
