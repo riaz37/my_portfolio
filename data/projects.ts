@@ -17,6 +17,34 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 1,
+    title: "Exorous",
+    description:
+      "Official site for Exorous — an AI-driven CLI coding agent with semantic search and MCP integration.",
+    icon: RiNextjsFill,
+    technologies: ["Next.js", "TypeScript", "TailwindCSS"],
+    liveUrl: "https://exorous.com",
+    skills: [
+      { name: "Developer Tools" },
+      { name: "AI Integration" },
+      { name: "CLI Development" },
+    ],
+  },
+  {
+    id: 2,
+    title: "PageSense",
+    description:
+      "AI-powered page analytics and insights platform for tracking user behavior and optimizing web performance.",
+    icon: RiNextjsFill,
+    technologies: ["Next.js", "TypeScript", "TailwindCSS"],
+    liveUrl: "https://pagesense.vercel.app",
+    skills: [
+      { name: "Analytics" },
+      { name: "AI Integration" },
+      { name: "Performance Optimization" },
+    ],
+  },
+  {
+    id: 3,
     title: "Zyro",
     description:
       "Multi-agent code generation system using Inngest Agent Kit and E2B sandbox for secure execution.",
@@ -30,7 +58,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 2,
+    id: 4,
     title: "Pingpanda",
     description:
       "LangGraph multi-agent system with Strategic Supervisor and real-time risk analysis engine.",
@@ -44,7 +72,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 3,
+    id: 5,
     title: "Exorous Code",
     description:
       "CLI coding agent (pip install exorous) with semantic search, AST-based chunking, and MCP integration.",
@@ -58,7 +86,21 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 4,
+    id: 6,
+    title: "ReviewSpark",
+    description:
+      "A review management platform that helps businesses collect, showcase, and respond to customer feedback.",
+    icon: RiNextjsFill,
+    technologies: ["Next.js", "TypeScript", "TailwindCSS"],
+    liveUrl: "https://reviewspark.online/",
+    skills: [
+      { name: "Full Stack Development" },
+      { name: "Review Management" },
+      { name: "SaaS" },
+    ],
+  },
+  {
+    id: 7,
     title: "Skateboard37",
     description:
       "An interactive and visually engaging skateboard e-commerce platform built using Next.js and React. It features dynamic animations, a seamless shopping experience, and a modern UI design.",
@@ -73,7 +115,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 5,
+    id: 8,
     title: "Animated 3D E-Commerce Website",
     description:
       "A comprehensive 3D project that showcases a dynamic e-commerce website with interactive animations.",
@@ -89,7 +131,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 6,
+    id: 9,
     title: "Case Cobra",
     description: "An e-commerce website created using Next.js.",
     icon: RiNextjsFill,
@@ -103,7 +145,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 7,
+    id: 10,
     title: "Sensai",
     description:
       "An AI-powered productivity suite that combines note-taking, chat, and content generation features using LLMs.",
@@ -118,7 +160,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 8,
+    id: 11,
     title: "ShortLink",
     description:
       "A URL shortening platform with custom alias support, built for speed and minimalism.",
@@ -130,48 +172,6 @@ export const projects: Project[] = [
       { name: "URL Shortening" },
       { name: "Custom Alias Routing" },
       { name: "Minimal UI Design" },
-    ],
-  },
-  {
-    id: 9,
-    title: "PageSense",
-    description:
-      "AI-powered page analytics and insights platform for tracking user behavior and optimizing web performance.",
-    icon: RiNextjsFill,
-    technologies: ["Next.js", "TypeScript", "TailwindCSS"],
-    liveUrl: "https://pagesense.vercel.app",
-    skills: [
-      { name: "Analytics" },
-      { name: "AI Integration" },
-      { name: "Performance Optimization" },
-    ],
-  },
-  {
-    id: 10,
-    title: "Exorous",
-    description:
-      "Official site for Exorous — an AI-driven CLI coding agent with semantic search and MCP integration.",
-    icon: RiNextjsFill,
-    technologies: ["Next.js", "TypeScript", "TailwindCSS"],
-    liveUrl: "https://exorous.com",
-    skills: [
-      { name: "Developer Tools" },
-      { name: "AI Integration" },
-      { name: "CLI Development" },
-    ],
-  },
-  {
-    id: 11,
-    title: "ReviewSpark",
-    description:
-      "A review management platform that helps businesses collect, showcase, and respond to customer feedback.",
-    icon: RiNextjsFill,
-    technologies: ["Next.js", "TypeScript", "TailwindCSS"],
-    liveUrl: "https://reviewspark.online/",
-    skills: [
-      { name: "Full Stack Development" },
-      { name: "Review Management" },
-      { name: "SaaS" },
     ],
   },
 ];
