@@ -1,42 +1,40 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
+import {
+  NODES,
+  TALL,
+  WIDE,
+  arrowPaths,
+  boxPath,
+  diamondPath,
+  loopHead,
+  type Layout,
+  type NodeId,
+} from "./sketch-layouts";
 
-// A hand-sketched RAG pipeline: the shape of most of the AI work on this page.
-const NODES = [
-  { label: "your docs", note: "PDFs, sites, catalogs" },
-  { label: "retrieve", note: "embed + vector search" },
-  { label: "LLM + tools", note: "agents, guardrails" },
-  { label: "cited answer", note: "Arabic or English" },
-] as const;
-
-const BOX = { w: 136, h: 64, y: 30, gap: 52, x0: 6 };
+// Dashed strokes fade in: motion's pathLength draw overrides strokeDasharray.
+// Hand-sketched architecture of a production AI feature: what sits around the model.
 const EASE = [0.65, 0, 0.35, 1] as const;
+const STEP_DELAY = 0.3;
+const ORDER: Record<NodeId | "user", number> = {
+  user: -1,
+  guard: 0,
+  router: 1,
+  retrieve: 2,
+  agent: 3,
+  gate: 4,
+  answer: 5,
+  handoff: 5,
+};
 
-function boxPath(x: number, y: number, w: number, h: number, seed: number): string {
-  const j = (n: number) => ((seed * 7 + n * 13) % 5) - 2; // deterministic wobble
-  return [
-    `M${x + 3} ${y + 2 + j(1)}`,
-    `C${x + w * 0.3} ${y - 2}, ${x + w * 0.7} ${y + 3}, ${x + w - 1} ${y + j(2)}`,
-    `C${x + w + 2} ${y + h * 0.35}, ${x + w - 2} ${y + h * 0.7}, ${x + w + 1} ${y + h - 1}`,
-    `C${x + w * 0.7} ${y + h + 2}, ${x + w * 0.3} ${y + h - 2}, ${x - 1} ${y + h + 1 + j(3)}`,
-    `C${x + 2} ${y + h * 0.6}, ${x - 2} ${y + h * 0.3}, ${x + 6} ${y - 1}`,
-  ].join(" ");
-}
+const LABEL =
+  "Architecture sketch of a production AI feature. A request passes guardrails for prompt injection, PII and policy, then a router that picks intent, model and cache. Retrieval uses hybrid search and reranking. An LLM calls tools in a loop with a step budget. A confidence gate checks the answer is grounded and schema-valid: if yes, a cited answer streams back; if not, a human takes over. Every step is traced and scored, and evals feed back into prompts, retrieval and routing.";
 
-function arrowPaths(fromX: number, toX: number, y: number): string[] {
-  const mid = (fromX + toX) / 2;
-  return [
-    `M${fromX} ${y + 2} C${mid - 6} ${y - 5}, ${mid + 6} ${y + 6}, ${toX} ${y}`,
-    `M${toX - 9} ${y - 7} L${toX} ${y} L${toX - 8} ${y + 8}`,
-  ];
-}
+const at = (id: NodeId | "user") => 0.2 + (ORDER[id] + 1) * STEP_DELAY;
 
-export function PipelineSketch() {
+function useInk() {
   const reduce = useReducedMotion();
-  const width = BOX.x0 * 2 + NODES.length * BOX.w + (NODES.length - 1) * BOX.gap;
-  const midY = BOX.y + BOX.h / 2;
-
   const draw = (delay: number) =>
     reduce
       ? {}
@@ -45,11 +43,10 @@ export function PipelineSketch() {
           whileInView: { pathLength: 1, opacity: 1 },
           viewport: { once: true },
           transition: {
-            pathLength: { duration: 0.7, delay, ease: EASE },
+            pathLength: { duration: 0.6, delay, ease: EASE },
             opacity: { duration: 0.01, delay },
           },
         };
-
   const fade = (delay: number) =>
     reduce
       ? {}
@@ -57,67 +54,154 @@ export function PipelineSketch() {
           initial: { opacity: 0 },
           whileInView: { opacity: 1 },
           viewport: { once: true },
-          transition: { duration: 0.5, delay },
+          transition: { duration: 0.45, delay },
         };
+  return { draw, fade };
+}
+
+interface SketchProps {
+  layout: Layout;
+  className: string;
+}
+
+function Sketch({ layout, className }: SketchProps) {
+  const { draw, fade } = useInk();
+  const stroke = { stroke: "currentColor", strokeLinecap: "round", strokeLinejoin: "round" } as const;
+  const { rail } = layout;
+  const railDelay = at("handoff") + 0.4;
 
   return (
     <svg
-      viewBox={`0 0 ${width} 132`}
+      viewBox={`0 0 ${layout.w} ${layout.h}`}
       role="img"
-      aria-label="Sketch of a retrieval pipeline: your documents are retrieved with embeddings and vector search, passed to an LLM with tools and guardrails, and returned as a cited answer in Arabic or English."
-      className="h-auto w-full overflow-visible"
+      aria-label={LABEL}
+      className={`h-auto w-full overflow-visible ${className}`}
       fill="none"
     >
+      <motion.text
+        x={layout.user.x}
+        y={layout.user.y}
+        textAnchor="middle"
+        className="fill-muted font-hand"
+        fontSize="22"
+        {...fade(0.1)}
+      >
+        user
+      </motion.text>
+
       {NODES.map((node, i) => {
-        const x = BOX.x0 + i * (BOX.w + BOX.gap);
-        const base = 0.3 + i * 0.45;
-        const last = i === NODES.length - 1;
+        const rect = layout.rects[node.id];
+        const note = layout.notes[node.id];
+        const t = at(node.id);
+        const accent = node.kind === "out";
+        const isGate = node.kind === "gate";
         return (
-          <g key={node.label}>
+          <g key={node.id}>
             <motion.path
-              d={boxPath(x, BOX.y, BOX.w, BOX.h, i + 1)}
-              stroke="currentColor"
-              strokeWidth={last ? 2.4 : 1.8}
-              strokeLinecap="round"
-              className={last ? "text-accent" : "text-fg"}
-              {...draw(base)}
+              d={isGate ? diamondPath(rect) : boxPath(rect, i + 1)}
+              {...stroke}
+              strokeWidth={accent ? 2.4 : 1.8}
+              strokeDasharray={node.kind === "alt" ? "6 5" : undefined}
+              className={accent ? "text-accent" : "text-fg"}
+              {...(node.kind === "alt" ? fade(t) : draw(t))}
             />
             <motion.text
-              x={x + BOX.w / 2}
-              y={midY + 8}
+              x={rect.x + rect.w / 2}
+              y={rect.y + rect.h / 2 + (isGate ? 6 : 8)}
               textAnchor="middle"
-              className={`font-hand ${last ? "fill-accent" : "fill-fg"}`}
-              fontSize="26"
-              {...fade(base + 0.35)}
+              className={`font-hand ${accent ? "fill-accent" : "fill-fg"}`}
+              fontSize={isGate ? 20 : 25}
+              {...fade(t + 0.3)}
             >
               {node.label}
             </motion.text>
             <motion.text
-              x={x + BOX.w / 2}
-              y={BOX.y + BOX.h + 30}
-              textAnchor="middle"
+              x={note.x}
+              y={note.y}
+              textAnchor={note.anchor}
               className="fill-faint font-hand"
-              fontSize="19"
-              {...fade(base + 0.5)}
+              fontSize="18"
+              {...fade(t + 0.45)}
             >
-              {node.note}
-            </motion.text>
-            {!last &&
-              arrowPaths(x + BOX.w + 8, x + BOX.w + BOX.gap - 8, midY).map((d, k) => (
-                <motion.path
-                  key={d}
-                  d={d}
-                  stroke="currentColor"
-                  strokeWidth={1.8}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="text-muted"
-                  {...draw(base + 0.4 + k * 0.2)}
-                />
+              {node.note.map((line, k) => (
+                <tspan key={line} x={note.x} dy={k === 0 ? 0 : 21}>
+                  {line}
+                </tspan>
               ))}
+            </motion.text>
           </g>
         );
       })}
+
+      {layout.edges.map((edge) => {
+        const t = at(edge.from) + 0.35;
+        return (
+          <g key={edge.d.join(",")}>
+            {arrowPaths(edge.d).map((d, k) => (
+              <motion.path key={d} d={d} {...stroke} strokeWidth={1.8} className="text-muted" {...draw(t + k * 0.15)} />
+            ))}
+            {edge.label && (
+              <motion.text
+                x={edge.label.x}
+                y={edge.label.y}
+                textAnchor="middle"
+                className="fill-faint font-hand"
+                fontSize="17"
+                {...fade(t + 0.3)}
+              >
+                {edge.label.text}
+              </motion.text>
+            )}
+          </g>
+        );
+      })}
+
+      {[layout.loop, loopHead(layout.loop)].map((d, k) => (
+        <motion.path key={d} d={d} {...stroke} strokeWidth={1.8} className="text-accent" {...draw(at("agent") + 0.25 + k * 0.2)} />
+      ))}
+
+      <g className="text-faint">
+        {rail.ticks.map((x) => (
+          <motion.path
+            key={x}
+            d={`M${x} ${rail.tickY[0]} L${x} ${rail.tickY[1]}`}
+            {...stroke}
+            strokeWidth={1.4}
+            strokeDasharray="3 5"
+            {...fade(railDelay)}
+          />
+        ))}
+        <motion.path
+          d={`M${rail.line[0]} ${rail.line[2]} C${rail.line[0] + 120} ${rail.line[2] + 3}, ${rail.line[1] - 120} ${rail.line[2] - 3}, ${rail.line[1]} ${rail.line[2]}`}
+          {...stroke}
+          strokeWidth={1.4}
+          strokeDasharray="3 5"
+          {...fade(railDelay + 0.2)}
+        />
+        <motion.text
+          x={rail.labelX}
+          y={rail.labelY}
+          textAnchor="middle"
+          className="fill-muted font-hand"
+          fontSize="19"
+          {...fade(railDelay + 0.5)}
+        >
+          {rail.label.map((line, k) => (
+            <tspan key={line} x={rail.labelX} dy={k === 0 ? 0 : 22}>
+              {line}
+            </tspan>
+          ))}
+        </motion.text>
+      </g>
     </svg>
+  );
+}
+
+export function PipelineSketch() {
+  return (
+    <>
+      <Sketch layout={WIDE} className="hidden sm:block" />
+      <Sketch layout={TALL} className="mx-auto max-w-sm sm:hidden" />
+    </>
   );
 }

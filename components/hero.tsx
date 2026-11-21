@@ -86,7 +86,7 @@ export function Hero() {
 
       <Reveal delay={0.2} className="mt-16 rounded-3xl border border-dashed border-line bg-bg/60 px-5 pt-5 pb-3 sm:px-8 sm:pt-6">
         <p className="mb-4 -rotate-1 font-hand text-xl text-muted">
-          the shape of most things I build:
+          what actually sits around the model in production:
         </p>
         <PipelineSketch />
       </Reveal>
