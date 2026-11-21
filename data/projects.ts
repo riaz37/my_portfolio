@@ -1,181 +1,87 @@
-import { RiNextjsFill } from "react-icons/ri";
-
-export interface Skill {
-  name: string;
-}
-
 export interface Project {
-  id: number;
+  slug: string;
   title: string;
+  tagline: string;
   description: string;
-  icon: React.ComponentType<{ className?: string }>;
-  technologies: string[];
-  liveUrl?: string;
-  skills: Skill[];
+  year: string;
+  context: string;
+  metric: string;
+  stack: ReadonlyArray<string>;
+  url: string;
+  image: string;
+  imageAlt: string;
 }
 
-export const projects: Project[] = [
+// Only projects with a working public link belong here.
+export const projects: ReadonlyArray<Project> = [
   {
-    id: 1,
-    title: "Exorous",
+    slug: "clarly",
+    title: "Clarly",
+    tagline: "Arabic and English AI support",
     description:
-      "AI-powered competitor ad intelligence platform that scans ads across Facebook, Instagram, TikTok, Messenger, and Audience Network daily, scores them across six performance dimensions, and auto-generates branded variations with dual-model AI (Gemini + Claude).",
-    icon: RiNextjsFill,
-    technologies: ["Next.js", "TypeScript", "Gemini", "Claude", "REST API", "Webhooks"],
-    liveUrl: "https://exorous.com",
-    skills: [
-      { name: "AI Integration" },
-      { name: "Ad Intelligence" },
-      { name: "Dual-model AI" },
-      { name: "API & Webhooks" },
-    ],
+      "AI sales and support for Gulf businesses on WhatsApp, Instagram and Messenger. Answers customers in Arabic and English from the business's own documents with source citations, and hands off to staff below a confidence threshold or on restricted topics.",
+    year: "2026",
+    context: "ESAP AI",
+    metric: "3 channels · 4 store integrations",
+    stack: ["RAG", "WhatsApp templates", "Salla", "Zid", "Shopify", "WooCommerce"],
+    url: "https://clarly.chat",
+    image: "/work/clarly.webp",
+    imageAlt: "Clarly landing page, headline reading We answer every chat at 02:14, with WhatsApp, Instagram, Messenger and English & Arabic support listed",
   },
   {
-    id: 2,
-    title: "PageSense",
+    slug: "hormonaiq",
+    title: "HormonaIQ",
+    tagline: "Hormonal health, with an AI companion",
     description:
-      "Enterprise-grade RAG platform that ingests messy documents (invoices, contracts, quotations — handwritten, scanned, bilingual) and turns them into structured, queryable knowledge with semantic + keyword hybrid search, cited answers, and live indexing.",
-    icon: RiNextjsFill,
-    technologies: ["Next.js", "TypeScript", "RAG", "Vector Search", "Hybrid Retrieval", "LLM"],
-    liveUrl: "https://pagesense.vercel.app",
-    skills: [
-      { name: "Enterprise RAG" },
-      { name: "Hybrid Retrieval" },
-      { name: "Document Intelligence" },
-      { name: "Structured Extraction" },
-      { name: "Cited Answers" },
-    ],
+      "A daily check-in for PMDD, PCOS and perimenopause that shows how symptoms follow the cycle, so people can bring the proof to their doctor. Its AI companion, Ora, answers through a multi-round tool loop over a clinical knowledge graph and consent-gated personal data, and accepts voice and photo input.",
+    year: "2026",
+    context: "Solo founder, early access",
+    metric: "91 API endpoints · iOS + Android",
+    stack: ["Expo", "React Native", "FastAPI", "Neo4j", "pgvector", "Supabase"],
+    url: "https://www.hormonaiq.com",
+    image: "/work/hormonaiq.webp",
+    imageAlt: "HormonaIQ landing page: track the weeks your period app ignores, beside the app's Today screen",
   },
   {
-    id: 3,
+    slug: "memfind",
+    title: "Memfind",
+    tagline: "On-device search for everything",
+    description:
+      "Search photos, screenshots, videos, PDFs, documents and voice recordings by what is in them, in your own words. Everything is indexed and searched on the device; nothing is uploaded. Shipped on the App Store for iPhone, iPad and Mac.",
+    year: "2026",
+    context: "Solo, App Store",
+    metric: "iOS · iPadOS · macOS",
+    stack: ["Swift", "SwiftUI", "llama.cpp", "On-device embeddings"],
+    url: "https://getmemfind.com",
+    image: "/work/memfind.webp",
+    imageAlt: "Memfind landing page with an iPhone searching for a booking code",
+  },
+  {
+    slug: "remotionui",
+    title: "RemotionUI",
+    tagline: "Open-source motion components",
+    description:
+      "A shadcn-style CLI for copy-and-paste Remotion video components. Production-ready motion where you own the source. Built and distributed solo, grown by building in public.",
+    year: "2026",
+    context: "Solo, open source",
+    metric: "CLI + component registry",
+    stack: ["TypeScript", "React", "Remotion", "CLI"],
+    url: "https://remotionui.com",
+    image: "/work/remotionui.webp",
+    imageAlt: "RemotionUI landing page: production-ready motion for Remotion, with the CLI install command",
+  },
+  {
+    slug: "zyro",
     title: "Zyro",
+    tagline: "Multi-agent code generation",
     description:
-      "Multi-agent code generation system using Inngest Agent Kit and E2B sandbox for secure execution.",
-    icon: RiNextjsFill,
-    technologies: ["Inngest", "E2B", "Next.js", "TypeScript"],
-    liveUrl: "https://zyro37.vercel.app/",
-    skills: [
-      { name: "Multi-agent Systems" },
-      { name: "Agentic Workflows" },
-      { name: "Secure Execution" },
-    ],
-  },
-  {
-    id: 4,
-    title: "Pingpanda",
-    description:
-      "LangGraph multi-agent system with Strategic Supervisor and real-time risk analysis engine.",
-    icon: RiNextjsFill,
-    technologies: ["LangGraph", "Python", "FastAPI", "Redis"],
-    liveUrl: "https://www.pingpanda.online/",
-    skills: [
-      { name: "Graph-based Agents" },
-      { name: "Real-time Analysis" },
-      { name: "System Architecture" },
-    ],
-  },
-  {
-    id: 5,
-    title: "Exorous Code",
-    description:
-      "CLI coding agent (pip install exorous) with semantic search, AST-based chunking, and MCP integration.",
-    icon: RiNextjsFill,
-    technologies: ["Python", "Click", "MCP", "Embeddings"],
-    liveUrl: "https://exorous-docs.vercel.app/",
-    skills: [
-      { name: "CLI Development" },
-      { name: "Semantic Search" },
-      { name: "AST Chunking" },
-    ],
-  },
-  {
-    id: 6,
-    title: "ReviewSpark",
-    description:
-      "Automated Google review management SaaS for local businesses — sends SMS/email review requests post-visit, routes unhappy customers to private feedback forms before public reviews, and generates AI reply drafts with a real-time performance dashboard.",
-    icon: RiNextjsFill,
-    technologies: ["Next.js", "TypeScript", "Google OAuth", "Google Business Profile API"],
-    liveUrl: "https://reviewspark.online/",
-    skills: [
-      { name: "SaaS Development" },
-      { name: "Sentiment Routing" },
-      { name: "AI Reply Generation" },
-      { name: "OAuth Integration" },
-    ],
-  },
-  {
-    id: 7,
-    title: "Skateboard37",
-    description:
-      "An interactive and visually engaging skateboard e-commerce platform built using Next.js and React. It features dynamic animations, a seamless shopping experience, and a modern UI design.",
-    icon: RiNextjsFill,
-    technologies: ["Next.js", "TypeScript", "TailwindCSS", "GSAP"],
-    liveUrl: "https://skateboard37.vercel.app",
-    skills: [
-      { name: "E-commerce Development" },
-      { name: "UI/UX Design" },
-      { name: "3D Animations" },
-      { name: "Performance Optimization" },
-    ],
-  },
-  {
-    id: 8,
-    title: "Animated 3D E-Commerce Website",
-    description:
-      "A comprehensive 3D project that showcases a dynamic e-commerce website with interactive animations.",
-    icon: RiNextjsFill,
-    technologies: ["Next.js", "JavaScript", "TailwindCSS", "GSAP", "Prismic"],
-    liveUrl: "https://fizzi37.vercel.app",
-    skills: [
-      { name: "Web Scraping" },
-      { name: "Data Analysis" },
-      { name: "Automation" },
-      { name: "Machine Learning" },
-      { name: "Document Generation" },
-    ],
-  },
-  {
-    id: 9,
-    title: "Case Cobra",
-    description: "An e-commerce website created using Next.js.",
-    icon: RiNextjsFill,
-    technologies: ["Next.js", "TypeScript", "TailwindCSS", "Framer Motion"],
-    liveUrl: "https://casecobra37.vercel.app",
-    skills: [
-      { name: "Full Stack Development" },
-      { name: "UI/UX Design" },
-      { name: "Responsive Web Design" },
-      { name: "Performance Optimization" },
-    ],
-  },
-  {
-    id: 10,
-    title: "Sensai",
-    description:
-      "An AI-powered productivity suite that combines note-taking, chat, and content generation features using LLMs.",
-    icon: RiNextjsFill,
-    technologies: ["Next.js", "TailwindCSS", "TypeScript", "OpenAI API"],
-    liveUrl: "https://sensai37.vercel.app/",
-    skills: [
-      { name: "AI Integration" },
-      { name: "Content Generation" },
-      { name: "Productivity Tools" },
-      { name: "LLM Prompt Engineering" },
-    ],
-  },
-  {
-    id: 11,
-    title: "ShortLink",
-    description:
-      "A URL shortening platform with custom alias support, built for speed and minimalism.",
-    icon: RiNextjsFill,
-    technologies: ["Next.js", "TypeScript", "TailwindCSS", "Prisma"],
-    liveUrl: "https://shortlink37.vercel.app/",
-    skills: [
-      { name: "Backend Integration" },
-      { name: "URL Shortening" },
-      { name: "Custom Alias Routing" },
-      { name: "Minimal UI Design" },
-    ],
+      "Three specialised agents turn a natural-language prompt into a full-stack Next.js app, executed in isolated E2B sandboxes with hot reload and shareable preview URLs.",
+    year: "2025",
+    context: "Personal",
+    metric: "3 agents · sandboxed execution",
+    stack: ["Inngest Agent Kit", "E2B", "Next.js", "TypeScript"],
+    url: "https://zyro37.vercel.app",
+    image: "/work/zyro.webp",
+    imageAlt: "Zyro start screen with a prompt box and example app ideas",
   },
 ];

@@ -1,98 +1,79 @@
-// app/layout.tsx
-import type { Metadata } from "next";
-import { inter, jetbrain_mono } from "@/app/fonts";
-import "./globals.css";
-import { ThemeProvider } from "@/app/ThemeProvider";
-import { FloatingNav } from "@/components/ui/FloatingNavbar";
-import {
-  FaHome,
-  FaUser,
-  FaBriefcase,
-  FaCode,
-  FaTools,
-  FaAward,
-} from "react-icons/fa";
-import Footer from "@/components/sections/Footer";
+import type { Metadata, Viewport } from "next";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
+import { Caveat, Instrument_Serif } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import type { ReactNode } from "react";
+import { ThemeProvider } from "@/components/theme-provider";
+import { SITE_URL, profile } from "@/data/profile";
+import "./globals.css";
 
-export const metadata = {
-  title: "Riazul Islam",
-  description: "Personal portfolio of Riazul Islam",
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-instrument-serif",
+  display: "swap",
+});
+
+const caveat = Caveat({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  variable: "--font-caveat",
+  display: "swap",
+});
+
+const title = `${profile.name}, ${profile.role}`;
+const description =
+  "Full Stack AI Engineer building production LLM systems: RAG, multi-agent workflows and bilingual Arabic/English products. Open to remote, Gulf and Dhaka roles.";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: { default: title, template: `%s · ${profile.name}` },
+  description,
+  alternates: { canonical: "/" },
+  icons: { icon: "/favicon.png" },
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    siteName: profile.name,
+    title,
+    description,
+  },
+  twitter: { card: "summary_large_image", title, description },
 };
 
-const navItems = [
-  {
-    name: "Home",
-    link: "#home",
-    icon: <FaHome className="h-4 w-4 text-neutral-500 dark:text-white" />,
-  },
-  {
-    name: "Services",
-    link: "#services",
-    icon: <FaTools className="h-4 w-4 text-neutral-500 dark:text-white" />,
-  },
-  {
-    name: "Work",
-    link: "#work",
-    icon: <FaBriefcase className="h-4 w-4 text-neutral-500 dark:text-white" />,
-  },
-  {
-    name: "Certifications",
-    link: "#certifications",
-    icon: <FaAward className="h-4 w-4 text-neutral-500 dark:text-white" />,
-  },
-  {
-    name: "Projects",
-    link: "#projects",
-    icon: <FaCode className="h-4 w-4 text-neutral-500 dark:text-white" />,
-  },
-];
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#15130f" },
+    { media: "(prefers-color-scheme: light)", color: "#f4efe6" },
+  ],
+};
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.name,
+  jobTitle: profile.role,
+  url: SITE_URL,
+  email: `mailto:${profile.email}`,
+  address: { "@type": "PostalAddress", addressLocality: "Dhaka", addressCountry: "BD" },
+  sameAs: profile.links.map((link) => link.href),
+};
+
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="icon" type="image/png" sizes="32x32" href="./favicon.png" />
-        <meta property="og:title" content="Riazul's Portfolio" />
-        <meta
-          property="og:description"
-          content="Full Stack Web Developer and AI Enthusiast"
-        />
-        <meta property="og:url" content="https://riaz37.vercel.app" />
-        <meta
-          property="og:image"
-          content="https://riaz37.vercel.app/pics/web_screenshot.png"
-        />
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${GeistSans.variable} ${GeistMono.variable} ${instrumentSerif.variable} ${caveat.variable}`}
+    >
+      <body className="min-h-dvh font-sans">
         <script
-          dangerouslySetInnerHTML={{
-            __html: `
-            if (window.location.href === "https://github.com/riaz37") {
-              window.location.replace("https://riaz37.vercel.app");
-            }
-          `,
-          }}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
-        <meta property="og:type" content="website" />
-      </head>
-      <body
-        className={`${jetbrain_mono.variable} ${inter.variable} font-mono antialiased`}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <FloatingNav navItems={navItems} />
-
-          {children}
-          <Footer />
-          <Analytics />
-        </ThemeProvider>
+        <ThemeProvider>{children}</ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

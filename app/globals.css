@@ -1,124 +1,135 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+@custom-variant dark (&:where(.dark, .dark *));
 
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
-
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: #0a192f;
-    --foreground: #e6f1ff;
-
-    --card: #112240;
-    --card-foreground: #a8b2d1;
-
-    --popover: #112240;
-    --popover-foreground: #e6f1ff;
-
-    --primary: #64ffda;
-    --primary-foreground: #0a192f;
-
-    --secondary: #233554;
-    --secondary-foreground: #a8b2d1;
-
-    --muted: #233554;
-    --muted-foreground: #8892b0;
-
-    --accent: #ffd700;
-    --accent-foreground: #0a192f;
-
-    --destructive: #ff6b6b;
-    --destructive-foreground: #0a192f;
-
-    --border: #1e2d3d;
-    --input: #1e2d3d;
-    --ring: #64ffda;
-
-    --radius: 0.5rem;
-  }
+/* Paper & ink. Light is "paper", dark is "night desk". */
+:root {
+  --bg: #f4efe6;
+  --fg: #1f1b16;
+  --muted: #574f45;
+  --faint: #6a6257;
+  --line: #ddd3c1;
+  --surface: #ebe3d4;
+  --accent: #b23a1e;
+  --marker: #f5d77a;
+  --tape: rgba(214, 196, 150, 0.55);
+  --grain-opacity: 0.45;
+  --grain-blend: multiply;
 }
 
-@layer base {
-  body {
-    @apply bg-background text-foreground;
-    font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
-  }
-  button {
-    @apply active:outline-none;
-  }
+.dark {
+  --bg: #15130f;
+  --fg: #ece5d5;
+  --muted: #b0a693;
+  --faint: #988f7e;
+  --line: #2e2a22;
+  --surface: #1e1b15;
+  --accent: #ef8b62;
+  --marker: rgba(239, 139, 98, 0.32);
+  --tape: rgba(236, 229, 213, 0.14);
+  --grain-opacity: 0.12;
+  --grain-blend: screen;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-surface: var(--surface);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-hand: var(--font-caveat), "Bradley Hand", cursive;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Paper grain over the whole page. Decorative, never intercepts input. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: var(--grain-blend);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .38 0 0 0 0 .28 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Highlighter stroke behind inline text. */
+.marker {
+  padding: 0.05em 0.35em;
+  margin: 0 -0.1em;
+  border-radius: 0.6em 0.2em 0.7em 0.25em;
+  background-image: linear-gradient(
+    100deg,
+    transparent 0.5%,
+    var(--marker) 3%,
+    var(--marker) 95%,
+    transparent 99%
+  );
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* Graph-paper dots, faded at the edges. */
+.dot-grid {
+  background-image: radial-gradient(var(--line) 1.1px, transparent 1.1px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 75%);
+}
+
+/* A strip of masking tape pinning a print to the page. */
+.taped {
+  position: relative;
+}
+
+.taped::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  z-index: 1;
+  width: 96px;
+  height: 26px;
+  translate: -50% 0;
+  rotate: -3deg;
+  background: var(--tape);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.06);
+  backdrop-filter: blur(1px);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
   html {
-    scroll-behavior: smooth;
-  }
-}
-
-@layer utilities {
-  .heading {
-    @apply font-bold text-4xl md:text-5xl text-center;
-  }
-
-  .black-gradient {
-    background: linear-gradient(90deg, #161a31 0%, #06091f 100%);
-  }
-
-  .animate-blink {
-    animation: blink 1s step-start infinite;
-  }
-
-  .writing-vertical-rl {
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-  }
-
-  .floating-navbar {
-    background-color: rgba(var(--background), 0.95);
-  }
-
-  @supports (backdrop-filter: blur(4px)) {
-    .floating-navbar {
-      background-color: rgba(var(--background), 0.8);
-      backdrop-filter: blur(4px);
-    }
-  }
-}
-
-@keyframes blink {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
+    scroll-behavior: auto;
   }
 }

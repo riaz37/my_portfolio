@@ -47,7 +47,7 @@ To personalize the portfolio:
 - Adjust styling in the Tailwind CSS configuration.
 
 ## 📬 Contact
-- **Email**: riaz37.ipe@gmail.com
+- **Email**: riazulislam.dev@gmail.com
 - **LinkedIn**: [https://www.linkedin.com/in/riaz37](https://www.linkedin.com/in/riaz37)
 - **GitHub**: [https://github.com/riaz37](https://github.com/riaz37)
 
