@@ -22,9 +22,24 @@ export default function OpengraphImage() {
           fontFamily: "Georgia, serif",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 24, color: "#574f45", fontFamily: "monospace" }}>
-          <div style={{ width: 12, height: 12, borderRadius: 12, background: "#b23a1e" }} />
-          <span>{profile.availability}</span>
+        <div style={{ display: "flex" }}>
+          <div
+            style={{
+              display: "flex",
+              padding: "10px 20px",
+              border: "3px solid #b23a1e",
+              borderRadius: 4,
+              color: "#b23a1e",
+              fontSize: 24,
+              fontFamily: "monospace",
+              fontWeight: 700,
+              letterSpacing: 5,
+              textTransform: "uppercase",
+              transform: "rotate(-4deg)",
+            }}
+          >
+            {profile.availability}
+          </div>
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 84, lineHeight: 1.05, letterSpacing: -2 }}>{profile.headline}</div>

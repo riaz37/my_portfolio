@@ -15,15 +15,11 @@ export function Hero() {
     <section id="top" className="relative pt-16 pb-12 sm:pt-24">
       <div aria-hidden="true" className="dot-grid pointer-events-none absolute -inset-x-24 -top-10 bottom-0 -z-10" />
 
-      <Reveal>
-        <p className="inline-flex items-center gap-2 rounded-full border border-line bg-bg px-3 py-1 font-mono text-[11px] tracking-wide text-muted">
-          <span className="relative flex size-1.5">
-            <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-60 motion-reduce:hidden" />
-            <span className="relative inline-flex size-1.5 rounded-full bg-accent" />
-          </span>
+      <div>
+        <p className="stamp font-mono text-[13px] font-semibold tracking-[0.22em] uppercase">
           {profile.availability}
         </p>
-      </Reveal>
+      </div>
 
       <Reveal delay={0.05} className="relative mt-10">
         <p className="-rotate-2 font-hand text-2xl text-accent sm:text-[28px]">

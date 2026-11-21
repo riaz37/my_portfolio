@@ -4,7 +4,7 @@ export const profile = {
   name: "Riazul Islam",
   role: "Full Stack AI Engineer",
   location: "Dhaka, Bangladesh",
-  availability: "Open to work · Remote, Gulf, Dhaka",
+  availability: "Open to work",
   headline: "I build production AI systems that ship.",
   intro:
     "Full Stack AI Engineer at ESAP AI. I take LLM products from idea to production: RAG with citations, multi-agent workflows and natural-language database interfaces, including bilingual Arabic and English platforms used by businesses across the Gulf.",
