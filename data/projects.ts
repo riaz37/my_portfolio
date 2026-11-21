@@ -57,6 +57,20 @@ export const projects: ReadonlyArray<Project> = [
     imageAlt: "Memfind landing page with an iPhone searching for a booking code",
   },
   {
+    slug: "askbox",
+    title: "Askbox",
+    tagline: "Chat asks, turned into reminders",
+    description:
+      "Spots when someone in WhatsApp, Telegram or Slack asks you to do something, lines each ask up by when it's due, and adds it to Reminders with one swipe. Decides on the iPhone with Apple Intelligence, falling back to built-in rules; no account, no servers, no network code.",
+    year: "2026",
+    context: "Solo, App Store",
+    metric: "On-device · Apple frameworks only",
+    stack: ["Swift", "SwiftUI", "Foundation Models", "App Intents", "EventKit", "SwiftData"],
+    url: "https://apps.apple.com/app/id6828984744",
+    image: "/work/askbox.webp",
+    imageAlt: "Askbox site: see when, before you see what, above a week of asks such as Call grandma tonight and Send me the deck by Friday",
+  },
+  {
     slug: "remotionui",
     title: "RemotionUI",
     tagline: "Open-source motion components",
