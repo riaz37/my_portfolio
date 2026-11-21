@@ -39,7 +39,13 @@ export const metadata: Metadata = {
     title,
     description,
   },
-  twitter: { card: "summary_large_image", title, description },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    creator: profile.xHandle,
+    site: profile.xHandle,
+  },
 };
 
 export const viewport: Viewport = {

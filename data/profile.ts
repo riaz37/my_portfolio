@@ -9,10 +9,12 @@ export const profile = {
   intro:
     "Full Stack AI Engineer at ESAP AI. I take LLM products from idea to production: RAG with citations, multi-agent workflows and natural-language database interfaces, including bilingual Arabic and English platforms used by businesses across the Gulf.",
   email: "riazulislam.dev@gmail.com",
+  xHandle: "@riaz_37",
   resume: "/pdf/resume.pdf",
   links: [
     { label: "GitHub", href: "https://github.com/riaz37" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/riaz37" },
+    { label: "X", href: "https://x.com/riaz_37" },
   ],
 } as const;
 
