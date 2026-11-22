@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { Caveat, Instrument_Serif } from "next/font/google";
-import { Analytics } from "@vercel/analytics/react";
 import type { ReactNode } from "react";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SITE_URL, profile } from "@/data/profile";
@@ -79,7 +78,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
         <ThemeProvider>{children}</ThemeProvider>
-        <Analytics />
       </body>
     </html>
   );
