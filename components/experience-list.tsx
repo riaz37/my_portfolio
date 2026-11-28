@@ -1,6 +1,6 @@
 import { experience } from "@/data/experience";
-import { certifications, education, skills } from "@/data/profile";
 import { Reveal } from "./reveal";
+import { ToolboxCard } from "./toolbox-card";
 
 export function ExperienceList() {
   return (
@@ -36,21 +36,8 @@ export function ExperienceList() {
         </Reveal>
       ))}
 
-      <Reveal>
-        <dl className="grid gap-x-8 gap-y-3 border-t border-dashed border-line pt-10 text-sm sm:grid-cols-[7rem_1fr]">
-          {skills.map((skill) => (
-            <div key={skill.group} className="contents">
-              <dt className="font-mono text-xs leading-6 text-faint">{skill.group}</dt>
-              <dd className="leading-6 text-muted">{skill.items}</dd>
-            </div>
-          ))}
-          <dt className="mt-4 font-mono text-xs leading-6 text-faint sm:mt-0">Education</dt>
-          <dd className="leading-6 text-muted">
-            {education.degree}, {education.school}, {education.year}
-          </dd>
-          <dt className="font-mono text-xs leading-6 text-faint">Certificates</dt>
-          <dd className="leading-6 text-muted">{certifications}</dd>
-        </dl>
+      <Reveal className="pt-4">
+        <ToolboxCard />
       </Reveal>
     </div>
   );

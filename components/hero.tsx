@@ -2,6 +2,7 @@ import { profile } from "@/data/profile";
 import { Ink } from "./ink";
 import { PipelineSketch } from "./pipeline-sketch";
 import { Reveal } from "./reveal";
+import { SocialIcon } from "./social-icon";
 
 function splitLastWord(text: string): [string, string] {
   const i = text.trimEnd().lastIndexOf(" ");
@@ -68,16 +69,18 @@ export function Hero() {
         >
           Download CV
         </a>
-        <ul className="ml-1 flex items-center gap-4 text-sm text-muted">
+        <ul className="ml-2 flex items-center gap-5 text-muted">
           {profile.links.map((link) => (
-            <li key={link.href}>
+            <li key={link.href} className="flex">
               <a
                 href={link.href}
                 target="_blank"
                 rel="noreferrer"
-                className="underline decoration-line underline-offset-4 transition-colors hover:text-fg hover:decoration-fg"
+                aria-label={link.label}
+                title={link.label}
+                className="-m-2 inline-flex p-2 transition-[color,translate] hover:-translate-y-0.5 hover:text-fg"
               >
-                {link.label}
+                <SocialIcon name={link.icon} className="size-[18px]" />
               </a>
             </li>
           ))}

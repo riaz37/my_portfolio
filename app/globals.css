@@ -147,6 +147,36 @@ body::before {
   backdrop-filter: blur(1px);
 }
 
+/* A short torn strip of masking tape carrying a label. */
+.tape-chip {
+  display: inline-block;
+  padding: 0.2rem 0.75rem;
+  background: var(--tape);
+  clip-path: polygon(
+    0 0, 100% 0,
+    calc(100% - 3px) 20%, 100% 40%, calc(100% - 3px) 60%, 100% 80%, calc(100% - 2px) 100%,
+    0 100%,
+    3px 80%, 0 60%, 3px 40%, 0 20%
+  );
+}
+
+.tape-chip:nth-child(3n + 1) {
+  rotate: -1.2deg;
+}
+
+.tape-chip:nth-child(3n + 2) {
+  rotate: 0.8deg;
+}
+
+.tape-chip:nth-child(3n) {
+  rotate: -0.4deg;
+}
+
+/* Yellow washi tape for the skills worth calling out. */
+.tape-chip-key {
+  background: color-mix(in srgb, var(--marker) 80%, transparent);
+}
+
 ::selection {
   background: var(--accent);
   color: var(--bg);

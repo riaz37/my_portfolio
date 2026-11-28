@@ -12,27 +12,35 @@ export const profile = {
   xHandle: "@riaz_37",
   resume: "/pdf/resume.pdf",
   links: [
-    { label: "GitHub", href: "https://github.com/riaz37" },
-    { label: "LinkedIn", href: "https://www.linkedin.com/in/riaz37" },
-    { label: "X", href: "https://x.com/riaz_37" },
+    { label: "GitHub", href: "https://github.com/riaz37", icon: "github" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/riaz37", icon: "linkedin" },
+    { label: "X", href: "https://x.com/riaz_37", icon: "x" },
   ],
 } as const;
 
-export const skills: ReadonlyArray<{ group: string; items: string }> = [
+export interface SkillGroup {
+  group: string;
+  items: ReadonlyArray<string>;
+  /** Items to pick out with the highlighter. */
+  highlight?: ReadonlyArray<string>;
+}
+
+export const skills: ReadonlyArray<SkillGroup> = [
   {
     group: "AI",
-    items: "LLMs, RAG, agentic workflows, LangChain, LangGraph, MCP, embeddings, evals",
+    items: ["LLMs", "RAG", "agentic workflows", "LangChain", "LangGraph", "MCP", "embeddings", "evals"],
+    highlight: ["RAG", "agentic workflows", "MCP", "evals"],
   },
   {
     group: "Backend",
-    items: "Python, FastAPI, Node.js, NestJS, PostgreSQL, MSSQL, Redis, vector DBs",
+    items: ["Python", "FastAPI", "Node.js", "NestJS", "PostgreSQL", "MSSQL", "Redis", "vector DBs"],
   },
   {
     group: "Frontend",
-    items: "TypeScript, React, Next.js, Tailwind CSS, Motion",
+    items: ["TypeScript", "React", "Next.js", "Tailwind CSS", "Motion"],
   },
-  { group: "Apple", items: "Swift, SwiftUI, on-device ML (llama.cpp)" },
-  { group: "Infra", items: "Docker, Linux, Vercel, background jobs" },
+  { group: "Apple", items: ["Swift", "SwiftUI", "on-device ML (llama.cpp)"] },
+  { group: "Infra", items: ["Docker", "Linux", "Vercel", "background jobs"] },
 ];
 
 export const education = {
@@ -41,5 +49,9 @@ export const education = {
   year: "2025",
 };
 
-export const certifications =
-  "Associate AI Engineer for Developers (DataCamp) · Code in Place (Stanford) · Scientific Computing with Python, JavaScript Algorithms and Data Structures (freeCodeCamp)";
+export const certifications: ReadonlyArray<{ name: string; issuer: string }> = [
+  { name: "Associate AI Engineer for Developers", issuer: "DataCamp" },
+  { name: "Code in Place", issuer: "Stanford" },
+  { name: "Scientific Computing with Python", issuer: "freeCodeCamp" },
+  { name: "JavaScript Algorithms and Data Structures", issuer: "freeCodeCamp" },
+];
